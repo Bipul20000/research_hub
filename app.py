@@ -7,7 +7,7 @@ st.set_page_config(page_title="Collaborative Research Hub", layout="wide")
 if "current_page" not in st.session_state:
     st.session_state["current_page"] = "home"
 if "user" not in st.session_state:
-    st.session_state["user"] = "logged_out"  # Avoids resetting issues
+    st.session_state["user"] = None  # Using None for logged-out state to better handle session state
 
 
 # ✅ Navigation Function
