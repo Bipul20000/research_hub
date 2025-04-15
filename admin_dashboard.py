@@ -2,7 +2,7 @@ import streamlit as st
 from db_connection import get_db_connection
 
 def show():
-    st.title("🛠️ Admin Dashboard")
+    st.title(" Admin Dashboard")
 
     user = st.session_state.get("user")
     if not user:
@@ -13,7 +13,7 @@ def show():
     cursor = conn.cursor(dictionary=True)
 
     # Add Research Highlights
-    st.subheader("📌 Add Research Highlight")
+    st.subheader(" Add Research Highlight")
     title = st.text_input("Research Title")
     summary = st.text_area("Summary")
     contributors = st.text_input("Contributors (comma-separated)")
@@ -39,6 +39,6 @@ def show():
     conn.close()
 
     # Logout
-    if st.button("🚪 Logout", key="logout_button"):
+    if st.button(" Logout", key="logout_button"):
         st.session_state["user"] = None
         st.rerun()

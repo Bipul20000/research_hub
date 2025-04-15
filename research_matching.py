@@ -20,7 +20,7 @@ def display_person_details(person, match_percentage):
 
 
 def show_professor_recommendations():
-    st.subheader("🔬 Professor Recommendations")
+    st.subheader(" Professor Recommendations")
 
     user = st.session_state.get("user")
     if not user or not user.get("research_interests"):
@@ -48,7 +48,7 @@ def show_professor_recommendations():
 
 
 def show_research_partners():
-    st.subheader("👥 Find Research Partners")
+    st.subheader(" Find Research Partners")
 
     user = st.session_state.get("user")
     if not user or not user.get("research_interests") or not user.get("department"):

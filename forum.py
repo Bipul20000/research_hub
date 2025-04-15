@@ -3,7 +3,7 @@ from db_connection import get_db_connection, get_forum_posts, get_forum_posts_by
 
 
 def show():
-    st.title("🗣️ Community Forum")
+    st.title(" Community Forum")
 
     user = st.session_state.get("user")
     if not user:

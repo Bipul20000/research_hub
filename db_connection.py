@@ -4,17 +4,17 @@ import streamlit as st
 from datetime import datetime
 
 
-# Function to connect to the database
+
 def get_db_connection():
     return mysql.connector.connect(
-        host="127.0.0.1",  # Replace with your MySQL host
-        user="root",  # Replace with your MySQL username
-        password="bipul2576",  # Replace with your MySQL password
+        host="127.0.0.1",
+        user="root",
+        password="bipul2576",
         database="research_hub"
     )
 
 
-# Function to fetch user details for login
+
 def get_user(email, password):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
@@ -25,7 +25,7 @@ def get_user(email, password):
     return user
 
 
-# Function to register a new user
+
 def register_user(name, email, password, role):
     conn = get_db_connection()
     cursor = conn.cursor()

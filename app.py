@@ -3,26 +3,26 @@ from db_connection import get_user, register_user, get_research_highlights, sear
 
 st.set_page_config(page_title="Collaborative Research Hub", layout="wide")
 
-# ✅ Initialize session state variables safely
+
 if "current_page" not in st.session_state:
     st.session_state["current_page"] = "home"
 if "user" not in st.session_state:
-    st.session_state["user"] = None  # Using None for logged-out state to better handle session state
+    st.session_state["user"] = None
 
 
-# ✅ Navigation Function
+
 def navigate_to(page):
     if st.session_state["current_page"] != page:
         st.session_state["current_page"] = page
         st.rerun()
 
 
-# ✅ Top Navigation Bar
+
 st.markdown(
     """
     <style>
     .stApp {
-        background: url('https://t4.ftcdn.net/jpg/01/16/88/37/360_F_116883786_wuckft1sNw1ouQfJ6FuquZnxea3qBlxy.jpg') no-repeat center center fixed;
+        background: url('https://img.freepik.com/free-vector/dark-technology-hexagonal-background_91128-1258.jpg') no-repeat center center fixed;
         background-size: cover;
     }
 
@@ -122,17 +122,17 @@ st.markdown(
 
 st.markdown('<div class="center-content"><h1>Collaborative Research Hub</h1></div>', unsafe_allow_html=True)
 
-# ✅ Handle Page Navigation
+# Handle Page Navigation
 current_page = st.session_state.get("current_page", "home")
 
-# ✅ Home Page
+# Home Page
 if current_page == "home":
     # Search bar for research works
     st.subheader("🔍 Search Research Works")
     search_term = st.text_input("Enter keywords to search for research")
 
     # Show research highlights (filtered if search term is provided)
-    st.subheader("📢 Research Highlights")
+    st.subheader(" Research Highlights")
 
     if search_term:
         highlights = search_research_highlights(search_term)
@@ -148,7 +148,7 @@ if current_page == "home":
                 <div class="highlight-card">
                     <h3>{highlight['title']}</h3>
                     <p>{highlight['summary']}</p>
-                    <p><strong>👨‍🏫 Contributors:</strong> {highlight['contributors']}</p>
+                    <p><strong> Contributors:</strong> {highlight['contributors']}</p>
                     <p><strong>📝 Posted by:</strong> {highlight['posted_by']} | 📅 {highlight['date_posted'].strftime('%d %B %Y')}</p>
                 </div>
                 """,
@@ -158,15 +158,15 @@ if current_page == "home":
         st.info("No research highlights available yet. Stay tuned!")
 
     # Call to action for users to join
-    st.markdown("### 🚀 Join our Research Community!")
+    st.markdown("###  Join our Research Community!")
     st.write("Connect with professors and students for collaborative research opportunities.")
 
     if st.button("Go to Login/Register"):
         navigate_to("form")
 
-# ✅ Login/Register Page
+# Login/Register Page
 elif current_page == "form":
-    st.subheader("🔐 Login or Register")
+    st.subheader("Login or Register")
     option = st.radio("Select an option", ["Login", "Register"])
 
     if option == "Login":
@@ -177,7 +177,7 @@ elif current_page == "form":
         if login_button:
             user = get_user(email, password)
             if user:
-                st.session_state["user"] = user  # ✅ Store logged-in user details
+                st.session_state["user"] = user  # Store logged-in user details
                 st.success(f"Welcome, {user['name']}! 🎉")
 
                 # Navigate to respective dashboard
@@ -207,25 +207,25 @@ elif current_page == "form":
     if st.button("Back to Home"):
         navigate_to("home")
 
-# ✅ Student Dashboard
+# Student Dashboard
 elif current_page == "student_dashboard":
     import student_dashboard
 
     student_dashboard.show()
 
-# ✅ Professor Dashboard
+# Professor Dashboard
 elif current_page == "professor_dashboard":
     import professor_dashboard
 
     professor_dashboard.show()
 
-# ✅ Admin Dashboard
+#  Admin Dashboard
 elif current_page == "admin_dashboard":
     import admin_dashboard
 
     admin_dashboard.show()
 
-# ✅ Community Forum
+#  Community Forum
 elif current_page == "forum":
     import forum
 
@@ -247,5 +247,5 @@ elif current_page == "forum":
 if st.session_state.get("user") and st.session_state.get("user") != "logged_out":
     if current_page in ["student_dashboard", "professor_dashboard", "admin_dashboard"]:
         st.sidebar.title("Navigation")
-        if st.sidebar.button("🗣️ Community Forum"):
+        if st.sidebar.button(" Community Forum"):
             navigate_to("forum")

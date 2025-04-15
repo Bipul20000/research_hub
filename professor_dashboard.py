@@ -6,14 +6,14 @@ from db_connection import (
 
 
 def show():
-    st.title("👨‍🏫 Professor Dashboard")
+    st.title(" Professor Dashboard")
 
     user = st.session_state.get("user")
     if not user:
         st.error("Unauthorized access. Please log in.")
         return
 
-    # Create tabs for different sections
+
     tab1, tab2, tab3 = st.tabs([
         "👤 Profile",
         "📩 Collaboration Requests",
@@ -147,7 +147,7 @@ def show():
                     st.divider()
 
     # Logout Button (at the bottom of the dashboard)
-    if st.button("🚪 Logout", key="logout_button"):
+    if st.button("Logout", key="logout_button"):
         st.session_state["user"] = None
         st.rerun()
 

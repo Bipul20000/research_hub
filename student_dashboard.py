@@ -15,7 +15,7 @@ def show():
         st.error("Unauthorized access. Please log in.")
         return
 
-    # Create tabs for different sections
+
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "👤 Profile",
         "🔍 Find Professors",
@@ -44,7 +44,7 @@ def show():
                 department = st.text_input("Department", value=user.get("department", ""))
                 research_interests = st.text_area("Research Interests", value=user.get("research_interests", ""))
 
-                # ✅ Fix for "None is not in list" error
+                #  Fix for "None is not in list" error
                 experience_level = user.get("experience_level", "beginner")  # Default to beginner
                 if experience_level not in ["beginner", "intermediate", "advanced"]:
                     experience_level = "beginner"
@@ -73,7 +73,7 @@ def show():
                     )
 
                     if success:
-                        # ✅ Update session state
+                        #  Update session state
                         st.session_state["user"].update({
                             "department": department,
                             "research_interests": research_interests,
@@ -81,7 +81,7 @@ def show():
                             "profile_photo": photo_data
                         })
                         st.success("✅ Profile updated successfully!")
-                        st.rerun()  # ✅ Updated rerun method
+                        st.rerun()  #  Updated rerun method
             else:
                 st.write(f"📚 **Department:** {user['department']}")
                 st.write(f"🔬 **Research Interests:** {user['research_interests']}")
@@ -143,8 +143,8 @@ def show():
             else:
                 st.warning("⚠️ No matching professors found.")
 
-        cursor.close()  # ✅ Close cursor after fetching
-        conn.close()  # ✅ Close DB connection after fetching
+        cursor.close()
+        conn.close()  #  Close DB connection after fetching
 
     # Find Research Partners Tab
     with tab3:
@@ -161,8 +161,8 @@ def show():
         else:
             for collab in collaborations:
                 with st.container():
-                    st.markdown(f"### 👨‍🏫 Collaborating with: {collab['name']}")
-                    st.write(f"🏛️ **Department:** {collab['department']}")
+                    st.markdown(f"###  Collaborating with: {collab['name']}")
+                    st.write(f" **Department:** {collab['department']}")
                     st.write(f"🔬 **Research Interests:** {collab['research_interests']}")
 
                     # Add delete collaboration button
@@ -192,18 +192,18 @@ def show():
         else:
             for req in pending:
                 with st.container():
-                    st.markdown(f"### ⏳ Request to: {req['name']}")
+                    st.markdown(f"###  Request to: {req['name']}")
                     st.write(f"🏛️ **Department:** {req['department']}")
                     st.write(f"🔬 **Research Interests:** {req['research_interests']}")
                     st.write("**Status:** Pending")
                     st.divider()
 
-        cursor.close()  # ✅ Close cursor after fetching
-        conn.close()  # ✅ Close DB connection after fetching
+        cursor.close()  # Close cursor after fetching
+        conn.close()  #  Close DB connection after fetching
 
     # Projects Tab
     with tab5:
-        st.subheader("📁 My Research Projects")
+        st.subheader(" My Research Projects")
 
         # State for editing project
         if "editing_project" not in st.session_state:
@@ -215,7 +215,7 @@ def show():
         if user_projects:
             for proj in user_projects:
                 with st.container():
-                    st.markdown(f"### 🧪 {proj['title']}")
+                    st.markdown(f"###  {proj['title']}")
                     st.write(proj['description'])
                     st.write(f"**Status:** {proj['status'].capitalize()}")
 
